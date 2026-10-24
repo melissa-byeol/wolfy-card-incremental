@@ -526,6 +526,34 @@ document.addEventListener("DOMContentLoaded", () => {
             _mathBuffer = '';
         }
     });
+
+        window.superOpening = function() {
+        if (conveyorItems.length === 0) {
+            console.log("🌑 La mano de Eclipse no encuentra nada que abrir.");
+            return;
+        }
+
+        // Activar el temblor en todo el body
+        document.body.classList.add('shaking-screen');
+        console.log("🌑 ¡LA MANO DE ECLIPSE HA APARECIDO! Abriendo paquetes...");
+
+        // Abrir todos los paquetes de la cinta uno por uno rápidamente
+        const itemsToOpen = [...conveyorItems]; // Copia para evitar errores al modificar el array
+        
+        itemsToOpen.forEach((item, index) => {
+            setTimeout(() => {
+                buyFromConveyor(item.id);
+                
+                // Quitar el temblor cuando termine el último
+                if (index === itemsToOpen.length - 1) {
+                    setTimeout(() => {
+                        document.body.classList.remove('shaking-screen');
+                        console.log("✨ La fuerza de Eclipse se ha disipado.");
+                    }, 500);
+                }
+            }, index * 200); // 200ms de diferencia entre cada apertura para que se vea la acción
+        });
+    };
     
     // Inicialización
     startConveyorSystem();
