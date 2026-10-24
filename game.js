@@ -20,77 +20,79 @@ document.addEventListener("DOMContentLoaded", () => {
         flower: { price: 164000, duration: 150000, name: "Flower Garden", icon: "🌸" }
     };
 
-    // --- POOLS DE CARTAS ---
+    // --- POOLS DE CARTAS CON WEIGHTS ---
+    // Weight: 1 = 0.01%, 100 = 1%, 1000 = 10%, etc.
+    
     const classicsPool = [
-        { cardKey: "lobito", name: "🐺 Lobito", baseIncome: 2, rarity: "common", tags: [] },
-        { cardKey: "cachorrito", name: "🐶 Cachorrito", baseIncome: 3, rarity: "common", tags: [] },
-        { cardKey: "paletero", name: "🍦 Lobito Paletero", baseIncome: 4, rarity: "rare", tags: [] },
-        { cardKey: "espadachin", name: "⚔️ Lobito Espadachín", baseIncome: 6, rarity: "epic", tags: [] },
-        { cardKey: "resortero", name: "🪃 Lobito Resortero", baseIncome: 8, rarity: "legendary", tags: [] }
+        { cardKey: "lobito", name: "🐺 Lobito", baseIncome: 2, rarity: "common", weight: 4250, tags: [] },
+        { cardKey: "cachorrito", name: "🐶 Cachorrito", baseIncome: 3, rarity: "common", weight: 2750, tags: [] },
+        { cardKey: "paletero", name: "🍦 Lobito Paletero", baseIncome: 4, rarity: "rare", weight: 1750, tags: [] },
+        { cardKey: "espadachin", name: "⚔️ Lobito Espadachín", baseIncome: 6, rarity: "epic", weight: 900, tags: [] },
+        { cardKey: "resortero", name: "🪃 Lobito Resortero", baseIncome: 8, rarity: "legendary", weight: 350, tags: [] }
     ];
 
     const colorfulPool = [
-        { cardKey: "bobina_velocidad", name: "⚡ Lobito Bobina Velocidad", baseIncome: 50, rarity: "rare", tags: [], bgClass: "bg-colorful-custom" },
-        { cardKey: "bobina_gravitacional", name: "🌀 Lobito Bobina Gravitacional", baseIncome: 75, rarity: "epic", tags: [], bgClass: "bg-colorful-custom" },
-        { cardKey: "bobina_regenerativa", name: "💚 Lobito Bobina Regenerativa", baseIncome: 60, rarity: "epic", tags: [], bgClass: "bg-colorful-custom" },
-        { cardKey: "lobito_blue", name: " Lobito [Blue Team]", baseIncome: 10, rarity: "rare", tags: ["Blue Team"] },
-        { cardKey: "paletero_blue", name: "🔵 Paletero [Blue Team]", baseIncome: 15, rarity: "rare", tags: ["Blue Team"] },
-        { cardKey: "espadachin_blue", name: "🔵 Espadachín [Blue Team]", baseIncome: 25, rarity: "epic", tags: ["Blue Team"] },
-        { cardKey: "resortero_blue", name: " Resortero [Blue Team]", baseIncome: 35, rarity: "epic", tags: ["Blue Team"] },
-        { cardKey: "lobito_red", name: "🔴 Lobito [Red Team]", baseIncome: 10, rarity: "rare", tags: ["Red Team"] },
-        { cardKey: "paletero_red", name: "🔴 Paletero [Red Team]", baseIncome: 15, rarity: "rare", tags: ["Red Team"] },
-        { cardKey: "espadachin_red", name: "🔴 Espadachín [Red Team]", baseIncome: 25, rarity: "epic", tags: ["Red Team"] },
-        { cardKey: "resortero_red", name: "🔴 Resortero [Red Team]", baseIncome: 35, rarity: "epic", tags: ["Red Team"] },
-        { cardKey: "cachorrito_colorless", name: "⚪ Cachorrito [Colorless]", baseIncome: 100, rarity: "legendary", tags: ["Colorless"] }
+        { cardKey: "bobina_velocidad", name: "⚡ Lobito Bobina Velocidad", baseIncome: 50, rarity: "rare", weight: 800, tags: [], bgClass: "images/colorful-bg.png" },
+        { cardKey: "bobina_gravitacional", name: "🌀 Lobito Bobina Gravitacional", baseIncome: 75, rarity: "epic", weight: 500, tags: [], bgClass: "images/colorful-bg.png" },
+        { cardKey: "bobina_regenerativa", name: "💚 Lobito Bobina Regenerativa", baseIncome: 60, rarity: "epic", weight: 500, tags: [], bgClass: "images/colorful-bg.png" },
+        { cardKey: "lobito_blue", name: "🔵 Lobito [Blue Team]", baseIncome: 10, rarity: "rare", weight: 700, tags: ["Blue Team"] },
+        { cardKey: "paletero_blue", name: "🔵 Paletero [Blue Team]", baseIncome: 15, rarity: "rare", weight: 700, tags: ["Blue Team"] },
+        { cardKey: "espadachin_blue", name: "🔵 Espadachín [Blue Team]", baseIncome: 25, rarity: "epic", weight: 400, tags: ["Blue Team"] },
+        { cardKey: "resortero_blue", name: "🔵 Resortero [Blue Team]", baseIncome: 35, rarity: "epic", weight: 400, tags: ["Blue Team"] },
+        { cardKey: "lobito_red", name: "🔴 Lobito [Red Team]", baseIncome: 10, rarity: "rare", weight: 700, tags: ["Red Team"] },
+        { cardKey: "paletero_red", name: "🔴 Paletero [Red Team]", baseIncome: 15, rarity: "rare", weight: 700, tags: ["Red Team"] },
+        { cardKey: "espadachin_red", name: "🔴 Espadachín [Red Team]", baseIncome: 25, rarity: "epic", weight: 400, tags: ["Red Team"] },
+        { cardKey: "resortero_red", name: "🔴 Resortero [Red Team]", baseIncome: 35, rarity: "epic", weight: 400, tags: ["Red Team"] },
+        { cardKey: "cachorrito_colorless", name: "⚪ Cachorrito [Colorless]", baseIncome: 100, rarity: "legendary", weight: 200, tags: ["Colorless"] }
     ];
 
     const unforgettablePool = [
-        { cardKey: "uf_lobito", name: " Lobito", baseIncome: 3, rarity: "common", tags: ["Unforgettable Fashion"] },
-        { cardKey: "uf_boinero", name: "🎩 Lobito Boinero", baseIncome: 4, rarity: "common", tags: ["Unforgettable Fashion"] },
-        { cardKey: "uf_pantalonero", name: " Lobito Pantalonero", baseIncome: 10, rarity: "rare", tags: ["Unforgettable Fashion"] },
-        { cardKey: "uf_fresco", name: "🪮 Lobito Fresco", baseIncome: 18, rarity: "rare", tags: ["Unforgettable Fashion"] },
-        { cardKey: "uf_marinerito", name: "⚓ Lobito Marinerito", baseIncome: 14, rarity: "rare", tags: ["Unforgettable Fashion"] },
-        { cardKey: "uf_timido", name: "😳 Lobito Tímido", baseIncome: 8, rarity: "common", tags: ["Unforgettable Fashion"] },
-        { cardKey: "uf_callejero", name: "🏙️ Lobito Callejero", baseIncome: 12, rarity: "rare", tags: ["Unforgettable Fashion"] },
-        { cardKey: "uf_estiloso", name: "💅 Lobito Estiloso", baseIncome: 20, rarity: "epic", tags: ["Unforgettable Fashion"] },
-        { cardKey: "uf_curiosa", name: "🔍 Lobita Curiosa", baseIncome: 22, rarity: "common", tags: ["Unforgettable Fashion"] },
-        { cardKey: "uf_softcore", name: " Lobito SoftCore", baseIncome: 35, rarity: "rare", tags: ["Unforgettable Fashion"] },
-        { cardKey: "uf_brownie", name: "🍫 Lobito Brownie", baseIncome: 50, rarity: "rare", tags: ["Unforgettable Fashion"] },
-        { cardKey: "uf_esponjoso", name: "☁️ Lobito Esponjosito", baseIncome: 30, rarity: "epic", tags: ["Unforgettable Fashion"] },
-        { cardKey: "uf_alfa", name: " Lobito Alfa Supremo", baseIncome: 500, rarity: "legendary", tags: ["Unforgettable Fashion"] }
+        { cardKey: "uf_lobito", name: " Lobito", baseIncome: 3, rarity: "common", weight: 1500, tags: ["Unforgettable Fashion"] },
+        { cardKey: "uf_boinero", name: "🎩 Lobito Boinero", baseIncome: 4, rarity: "common", weight: 1500, tags: ["Unforgettable Fashion"] },
+        { cardKey: "uf_pantalonero", name: " Lobito Pantalonero", baseIncome: 10, rarity: "rare", weight: 800, tags: ["Unforgettable Fashion"] },
+        { cardKey: "uf_fresco", name: "🪮 Lobito Fresco", baseIncome: 18, rarity: "rare", weight: 800, tags: ["Unforgettable Fashion"] },
+        { cardKey: "uf_marinerito", name: "⚓ Lobito Marinerito", baseIncome: 14, rarity: "rare", weight: 800, tags: ["Unforgettable Fashion"] },
+        { cardKey: "uf_timido", name: "😳 Lobito Tímido", baseIncome: 8, rarity: "common", weight: 1500, tags: ["Unforgettable Fashion"] },
+        { cardKey: "uf_callejero", name: "🏙️ Lobito Callejero", baseIncome: 12, rarity: "rare", weight: 800, tags: ["Unforgettable Fashion"] },
+        { cardKey: "uf_estiloso", name: "💅 Lobito Estiloso", baseIncome: 20, rarity: "epic", weight: 500, tags: ["Unforgettable Fashion"] },
+        { cardKey: "uf_curiosa", name: "🔍 Lobita Curiosa", baseIncome: 22, rarity: "common", weight: 1500, tags: ["Unforgettable Fashion"] },
+        { cardKey: "uf_softcore", name: " Lobito SoftCore", baseIncome: 35, rarity: "rare", weight: 800, tags: ["Unforgettable Fashion"] },
+        { cardKey: "uf_brownie", name: "🍫 Lobito Brownie", baseIncome: 50, rarity: "rare", weight: 800, tags: ["Unforgettable Fashion"] },
+        { cardKey: "uf_esponjoso", name: "☁️ Lobito Esponjosito", baseIncome: 30, rarity: "epic", weight: 500, tags: ["Unforgettable Fashion"] },
+        { cardKey: "uf_alfa", name: " Lobito Alfa Supremo", baseIncome: 500, rarity: "legendary", weight: 100, tags: ["Unforgettable Fashion"] }
     ];
 
     const birthdayPool = [
-        { cardKey: "felix_v1", name: "🎈 Lobito [Vol.1]", baseIncome: 150, rarity: "rare", tags: ["Felix Birthday"], bgClass: "bg-felix-1" },
-        { cardKey: "felix_cach_v1", name: "🎈 Cachorrito [Vol.1]", baseIncome: 225, rarity: "epic", tags: ["Felix Birthday"], bgClass: "bg-felix-1" },
-        { cardKey: "felix_v2", name: " Lobito [Vol.2]", baseIncome: 150, rarity: "rare", tags: ["Felix Birthday"], bgClass: "bg-felix-2" },
-        { cardKey: "felix_cach_v2", name: "🎈 Cachorrito [Vol.2]", baseIncome: 225, rarity: "epic", tags: ["Felix Birthday"], bgClass: "bg-felix-2" },
-        { cardKey: "felix_v3", name: "🎈 Lobito [Vol.3]", baseIncome: 150, rarity: "rare", tags: ["Felix Birthday"], bgClass: "bg-felix-2" },
-        { cardKey: "felix_cach_v3", name: "🎈 Cachorrito [Vol.3]", baseIncome: 225, rarity: "epic", tags: ["Felix Birthday"], bgClass: "bg-felix-2" },
-        { cardKey: "felix_special", name: "🎂 Lobito Felix [20]", baseIncome: 2106, rarity: "legendary", tags: ["Felix Birthday"], bgClass: "bg-felix-1" }
+        { cardKey: "felix_v1", name: "🎈 Lobito [Vol.1]", baseIncome: 150, rarity: "rare", weight: 800, tags: ["Felix Birthday"], bgClass: "images/felix-vol1.png" },
+        { cardKey: "felix_cach_v1", name: "🎈 Cachorrito [Vol.1]", baseIncome: 225, rarity: "epic", weight: 500, tags: ["Felix Birthday"], bgClass: "images/felix-vol1.png" },
+        { cardKey: "felix_v2", name: " Lobito [Vol.2]", baseIncome: 150, rarity: "rare", weight: 800, tags: ["Felix Birthday"], bgClass: "images/felix-vol2" },
+        { cardKey: "felix_cach_v2", name: "🎈 Cachorrito [Vol.2]", baseIncome: 225, rarity: "epic", weight: 500, tags: ["Felix Birthday"], bgClass: "images/felix-vol2" },
+        { cardKey: "felix_v3", name: "🎈 Lobito [Vol.3]", baseIncome: 150, rarity: "rare", weight: 800, tags: ["Felix Birthday"], bgClass: "bg-felix-vol2" },
+        { cardKey: "felix_cach_v3", name: "🎈 Cachorrito [Vol.3]", baseIncome: 225, rarity: "epic", weight: 500, tags: ["Felix Birthday"], bgClass: "images/felix-vol2" },
+        { cardKey: "felix_special", name: "🎂 Lobito Felix [20]", baseIncome: 2106, rarity: "legendary", weight: 100, tags: ["Felix Birthday"], bgClass: "images/felix-vol1" }
     ];
 
     const flowerPool = [
-        { cardKey: "flower_lobito", name: "🌷 Lobito [Flower Garden]", baseIncome: 200, rarity: "common", tags: ["Flower Garden"], bgClass: "bg-flower-common" },
-        { cardKey: "flower_cachorrito", name: "🌿 Cachorrito Nenúfar", baseIncome: 250, rarity: "common", tags: ["Flower Garden"], bgClass: "bg-flower-common" },
-        { cardKey: "flower_pasto", name: " Lobito Pasto", baseIncome: 220, rarity: "common", tags: ["Flower Garden"], bgClass: "bg-flower-common" },
-        { cardKey: "flower_jardinero", name: "🌻 Lobito Jardinero", baseIncome: 400, rarity: "rare", tags: ["Flower Garden"], bgClass: "bg-flower-rare" },
-        { cardKey: "flower_girasol", name: "🌼 Cachorrito Girasol", baseIncome: 450, rarity: "rare", tags: ["Flower Garden"], bgClass: "bg-flower-rare" },
-        { cardKey: "flower_sakura_cach", name: "🌸 Cachorrito Flor de Sakura", baseIncome: 700, rarity: "epic", tags: ["Flower Garden"], bgClass: "bg-flower-epic" },
-        { cardKey: "flower_cactus", name: "🌵 Lobito Cactus", baseIncome: 750, rarity: "epic", tags: ["Flower Garden"], bgClass: "bg-flower-epic" },
-        { cardKey: "flower_margarita", name: "🌼 Lobita Margarita", baseIncome: 800, rarity: "epic", tags: ["Flower Garden"], bgClass: "bg-flower-epic" },
-        { cardKey: "flower_primaveral", name: "🌷 Lobito Primaveral", baseIncome: 1500, rarity: "legendary", tags: ["Flower Garden"], bgClass: "bg-flower-legendary" },
-        { cardKey: "flower_sakura", name: "🌸 Lobita Flor de Sakura", baseIncome: 1800, rarity: "legendary", tags: ["Flower Garden"], bgClass: "bg-flower-legendary" },
-        { cardKey: "flower_lirio", name: "🤍 Lobita Lirio Blanco", baseIncome: 2000, rarity: "legendary", tags: ["Flower Garden"], bgClass: "bg-flower-legendary" }
+        { cardKey: "flower_lobito", name: "🌷 Lobito [Flower Garden]", baseIncome: 200, rarity: "common", weight: 1200, tags: ["Flower Garden"], bgClass: "images/flower-common.png" },
+        { cardKey: "flower_cachorrito", name: "🌿 Cachorrito Nenúfar", baseIncome: 250, rarity: "common", weight: 1200, tags: ["Flower Garden"], bgClass: "images/flower-common.png" },
+        { cardKey: "flower_pasto", name: " Lobito Pasto", baseIncome: 220, rarity: "common", weight: 1200, tags: ["Flower Garden"], bgClass: "images/flower-common.png" },
+        { cardKey: "flower_jardinero", name: "🌻 Lobito Jardinero", baseIncome: 400, rarity: "rare", weight: 700, tags: ["Flower Garden"], bgClass: "images/flower-rare.png" },
+        { cardKey: "flower_girasol", name: "🌼 Cachorrito Girasol", baseIncome: 450, rarity: "rare", weight: 700, tags: ["Flower Garden"], bgClass: "images/flower-rare.png" },
+        { cardKey: "flower_sakura_cach", name: "🌸 Cachorrito Flor de Sakura", baseIncome: 700, rarity: "epic", weight: 400, tags: ["Flower Garden"], bgClass: "images/flower-epic.png" },
+        { cardKey: "flower_cactus", name: "🌵 Lobito Cactus", baseIncome: 750, rarity: "epic", weight: 400, tags: ["Flower Garden"], bgClass: "images/flower-epic.png" },
+        { cardKey: "flower_margarita", name: "🌼 Lobita Margarita", baseIncome: 800, rarity: "epic", weight: 400, tags: ["Flower Garden"], bgClass: "images/flower-epic.png" },
+        { cardKey: "flower_primaveral", name: "🌷 Lobito Primaveral", baseIncome: 1500, rarity: "legendary", weight: 150, tags: ["Flower Garden"], bgClass: "images/flower-legendary.png" },
+        { cardKey: "flower_sakura", name: "🌸 Lobita Flor de Sakura", baseIncome: 1800, rarity: "legendary", weight: 150, tags: ["Flower Garden"], bgClass: "images/flower-legendary.png" },
+        { cardKey: "flower_lirio", name: "🤍 Lobita Lirio Blanco", baseIncome: 2000, rarity: "legendary", weight: 150, tags: ["Flower Garden"], bgClass: "images/flower-legendary.png" }
     ];
 
     // Pool de evento - Felix Day 2026 (aparece en todos los álbumes al final)
     const felixDay2026Pool = [
-        { cardKey: "felix_day_common1", name: "🎉 Lobito Felix Day", baseIncome: 5, rarity: "common", tags: ["Felix Day 2026"] },
-        { cardKey: "felix_day_common2", name: "🎊 Cachorrito Felix Day", baseIncome: 8, rarity: "common", tags: ["Felix Day 2026"] },
-        { cardKey: "felix_day_rare1", name: "🎈 Lobito Festivo", baseIncome: 20, rarity: "rare", tags: ["Felix Day 2026"] },
-        { cardKey: "felix_day_epic1", name: "🎁 Lobito Regalo", baseIncome: 50, rarity: "epic", tags: ["Felix Day 2026"] },
-        { cardKey: "felix_day_legendary", name: "👑 Lobito Felix Day Especial", baseIncome: 100, rarity: "legendary", tags: ["Felix Day 2026"] }
+        { cardKey: "felix_day_common1", name: "🎉 Lobito Felix Day", baseIncome: 5, rarity: "common", weight: 3000, tags: ["Felix Day 2026"] },
+        { cardKey: "felix_day_common2", name: "🎊 Cachorrito Felix Day", baseIncome: 8, rarity: "common", weight: 3000, tags: ["Felix Day 2026"] },
+        { cardKey: "felix_day_rare1", name: "🎈 Lobito Festivo", baseIncome: 20, rarity: "rare", weight: 2000, tags: ["Felix Day 2026"] },
+        { cardKey: "felix_day_epic1", name: "🎁 Lobito Regalo", baseIncome: 50, rarity: "epic", weight: 1000, tags: ["Felix Day 2026"] },
+        { cardKey: "felix_day_legendary", name: "👑 Lobito Felix Day Especial", baseIncome: 100, rarity: "legendary", weight: 500, tags: ["Felix Day 2026"] }
     ];
 
     function getIncomePerSecond(card) {
@@ -110,19 +112,31 @@ document.addEventListener("DOMContentLoaded", () => {
         return Math.pow(2, card.level + 1) - 1 - card.copies;
     }
 
+    // Función para calcular el porcentaje de drop basado en weights
+    function calculateDropPercentage(card, pool) {
+        const totalWeight = pool.reduce((sum, c) => sum + c.weight, 0);
+        return ((card.weight / totalWeight) * 100).toFixed(2);
+    }
+
     function rollCardFromPool(pool, packType) {
         if (!pool || pool.length === 0) return classicsPool[0]; // Fallback
-        const r = Math.random() * 100;
-        let targetRarity = "common";
         
-        // Probabilidades ajustadas según rareza
-        if (r < 3) targetRarity = "legendary";
-        else if (r < 12) targetRarity = "epic";
-        else if (r < 35) targetRarity = "rare";
-
-        const filtered = pool.filter(c => c.rarity === targetRarity);
-        const usePool = filtered.length > 0 ? filtered : pool;
-        return JSON.parse(JSON.stringify(usePool[Math.floor(Math.random() * usePool.length)]));
+        // Calcular peso total
+        const totalWeight = pool.reduce((sum, card) => sum + card.weight, 0);
+        
+        // Generar número aleatorio basado en el peso total
+        let random = Math.random() * totalWeight;
+        
+        // Seleccionar carta basada en weights acumulativos
+        for (const card of pool) {
+            random -= card.weight;
+            if (random <= 0) {
+                return JSON.parse(JSON.stringify(card));
+            }
+        }
+        
+        // Fallback por si acaso
+        return JSON.parse(JSON.stringify(pool[0]));
     }
 
     // --- SISTEMA DE CINTA MECÁNICA ---
@@ -202,7 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
         else if (pack.type === "flower") pool = flowerPool;
         else pool = classicsPool;
 
-        // Obtener carta del paquete
+        // Obtener carta del paquete usando el sistema de weights
         const card = rollCardFromPool(pool, pack.type);
         
         // También hay chance de obtener una carta de Felix Day 2026 (evento)
@@ -215,7 +229,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 collection[eventCard.cardKey] = {
                     name: eventCard.name, baseIncome: eventCard.baseIncome, level: 1, copies: 0,
                     pendingMoney: 0, lastCollect: Date.now(), rarity: eventCard.rarity,
-                    tags: eventCard.tags || [], bgClass: eventCard.bgClass || ''
+                    tags: eventCard.tags || [], bgClass: eventCard.bgClass || '',
+                    weight: eventCard.weight
                 };
             }
             collection[eventCard.cardKey].copies++;
@@ -227,7 +242,8 @@ document.addEventListener("DOMContentLoaded", () => {
             collection[card.cardKey] = {
                 name: card.name, baseIncome: card.baseIncome, level: 1, copies: 0,
                 pendingMoney: 0, lastCollect: Date.now(), rarity: card.rarity,
-                tags: card.tags || [], bgClass: card.bgClass || ''
+                tags: card.tags || [], bgClass: card.bgClass || '',
+                weight: card.weight
             };
         }
         collection[card.cardKey].copies++;
@@ -295,6 +311,20 @@ document.addEventListener("DOMContentLoaded", () => {
             if (card.tags.includes('Felix Birthday')) return 'birthday';
             if (card.tags.includes('Blue Team') || card.tags.includes('Red Team') || card.tags.includes('Colorless')) return 'colorful';
             return 'classics';
+        }
+
+        // Función para obtener el pool correcto de una carta
+        function getPoolForCard(card) {
+            const pack = getPackForCard(card);
+            switch(pack) {
+                case 'classics': return classicsPool;
+                case 'colorful': return colorfulPool;
+                case 'unforgettable': return unforgettablePool;
+                case 'birthday': return birthdayPool;
+                case 'flower': return flowerPool;
+                case 'felix_day': return felixDay2026Pool;
+                default: return classicsPool;
+            }
         }
 
         // Ordenar las cartas
@@ -414,10 +444,15 @@ document.addEventListener("DOMContentLoaded", () => {
             
             const income = getIncomePerSecond(card);
             const pending = Math.floor(card.pendingMoney);
+            
+            // Calcular porcentaje de drop
+            const pool = getPoolForCard(cardData);
+            const dropRate = calculateDropPercentage(cardData, pool);
 
             div.innerHTML = `
                 <div class="card-level">Lv${card.level}</div>
                 <div class="card-name">${card.name}</div>
+                <div class="card-drop-rate" style="color: #aaa; font-size: 0.75em; margin: 3px 0;">${dropRate}%</div>
                 <div class="card-income">💰 $${income}/s</div>
                 ${pending > 0 ? `<div class="card-pending" style="color:#00ff88">+$${pending}</div>` : ''}
             `;
