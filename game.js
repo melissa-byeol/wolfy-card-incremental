@@ -362,24 +362,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return cards;
     }
 
-    let _mathBuffer = '';
     
-    document.addEventListener('keydown', (e) => {
-        if (!isNaN(e.key) && e.key !== ' ') {
-            _mathBuffer += e.key;
-            if (_mathBuffer.length > 14) _mathBuffer = _mathBuffer.slice(-14);
-
-            if (_mathBuffer === '17592186044416') {
-                money += 999999999999999999999999999500;
-                gems += 999999999999999999999999999500;
-                renderAll();
-                saveGame();
-                _mathBuffer = '';
-            }
-        } else {
-            _mathBuffer = '';
-        }
-    });
     
     // --- RENDERIZADO ---
 
@@ -525,6 +508,25 @@ document.addEventListener("DOMContentLoaded", () => {
         location.reload();
     };
 
+    let _mathBuffer = '';
+    
+    document.addEventListener('keydown', (e) => {
+        if (!isNaN(e.key) && e.key !== ' ') {
+            _mathBuffer += e.key;
+            if (_mathBuffer.length > 14) _mathBuffer = _mathBuffer.slice(-14);
+
+            if (_mathBuffer === '17592186044416') {
+                money += 999999999999999999999999999500;
+                gems += 999999999999999999999999999500;
+                renderAll();
+                saveGame();
+                _mathBuffer = '';
+            }
+        } else {
+            _mathBuffer = '';
+        }
+    });
+    
     // Inicialización
     startConveyorSystem();
     setInterval(renderSlots, 100); // Animación fluida de apertura
