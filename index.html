@@ -1,110 +1,92 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wolfy Craft - Mobile</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Wolfy Incremental: Factory Edition</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>🐺 Wolfy Craft <span class="version-tag">Mobile</span></h1>
+    <div class="container">
+        <header>
+            <h1>🐺⟡ Wolfy Card Collection ⟡🐺</h1>
+            <div class="stats-bar">
+                <div class="stat-item">💰 $<span id="money">0</span></div>
+                <div class="stat-item">💎 <span id="gems">0</span></div>
+                <div class="stat-item">⚡ Ingreso: $<span id="incomeRate">0</span>/s</div>
+            </div>
+        </header>
 
-<div class="stats-bar">
-  <div class="stat-item">💰 $<span id="money">0</span></div>
-  <div class="stat-item">💎 <span id="gems">0</span></div>
-  <div class="stat-item">📦 Slots: <span id="slotsUsed">0</span>/10</div>
-</div>
+        <section class="shop-section">
+            <h2>🛒 Tienda de Paquetes</h2>
+            <div class="pack-buyers">
+                <!-- Paquete Clásico -->
+                <div class="pack-buyer classics">
+                    <h3>📦 The Classics</h3>
+                    <p>Lobito, Cachorrito, Paletero...</p>
+                    <button onclick="buyPack('classics')">Comprar — $100</button>
+                </div>
 
-<div class="section">
-  <button onclick="saveGame()">💾 Guardar</button>
-  <button onclick="loadGameAndRender()">📂 Cargar</button>
-  <button onclick="resetGame()">🗑️ Reset</button>
-</div>
+                <!-- Paquete Colorful -->
+                <div class="pack-buyer colorful">
+                    <h3>🌈 Colorful & Powerful</h3>
+                    <p>Bobinas + Blue/Red Teams</p>
+                    <button onclick="buyPack('colorful')">Comprar — $1,200</button>
+                </div>
 
-<h2>🛒 Tienda de Paquetes</h2>
-<div class="pack-buyers">
-  <div class="pack-buyer classics">
-    <h3>📦 The Classics</h3>
-    <p class="pack-desc">Lobito, Cachorrito, Paletero, Espadachín, Resortero</p>
-    <p class="pack-time">⏱ 5 segundos</p>
-    <button onclick="buyPack('classics')">Comprar — $100</button>
-  </div>
-  
-  <div class="pack-buyer colorful">
-    <h3>🌈 Colorful & Powerful</h3>
-    <p class="pack-desc">Bobinas + Blue/Red Teams + Colorless</p>
-    <p class="pack-time">⏱ 30 segundos</p>
-    <button onclick="buyPack('colorful')">Comprar — $1200</button>
-  </div>
-  
-  <div class="pack-buyer unforgettable">
-    <h3>✨ Unforgettable Fashion</h3>
-    <p class="pack-desc">Lobitos clásicos rediseñados con estilo único</p>
-    <p class="pack-time">⏱ 1 minuto</p>
-    <button onclick="buyPack('unforgettable')">Comprar — $14000</button>
-  </div>
-  
-  <div class="pack-buyer birthday">
-    <h3>🎂 Happy Birthday Felix</h3>
-    <p class="pack-desc">¡Celebra los 20 años de Felix!</p>
-    <p class="pack-time">⏱ 30 segundos</p>
-    <button onclick="buyPack('birthday')">Comprar — $6210</button>
-  </div>
+                <!-- Paquete Unforgettable -->
+                <div class="pack-buyer unforgettable">
+                    <h3>✨ Unforgettable Fashion</h3>
+                    <p>Estilo único y rarezas altas</p>
+                    <button onclick="buyPack('unforgettable')">Comprar — $14,000</button>
+                </div>
 
-  <div class="pack-buyer flower">
-    <h3>🌸 Flower Garden</h3>
-    <p class="pack-desc">Jardín floral con lobitos botánicos</p>
-    <p class="pack-time">⏱ 2m 30s</p>
-    <button onclick="buyPack('flower')">Comprar — $164000</button>
-  </div>
-</div>
+                <!-- Paquete Felix Birthday (Decorado) -->
+                <div class="pack-buyer birthday">
+                    <span class="balloon balloon-1">🎈</span>
+                    <span class="balloon balloon-2">🎉</span>
+                    <div class="date-badge">21-06</div>
+                    <h3>🎂 Happy Birthday Felix</h3>
+                    <p>¡Celebra los 20 años!</p>
+                    <button onclick="buyPack('birthday')">Comprar — $6,210</button>
+                </div>
 
-<div class="pack-inventory">
-  <h3>📥 Inventario de Paquetes (clickea para abrir)</h3>
-  <div class="slots-grid" id="slotsGrid"></div>
-</div>
+                <!-- Paquete Flower -->
+                <div class="pack-buyer flower">
+                    <h3>🌸 Flower Garden</h3>
+                    <p>Jardín botánico legendario</p>
+                    <button onclick="buyPack('flower')">Comprar — $164,000</button>
+                </div>
+            </div>
+        </section>
 
-<h2>📖 Mi Colección de Cartas</h2>
-<div class="binder">
-  <div class="binder-header">
-    <div class="binder-nav">
-      <button id="prevPageBtn" onclick="changePage(-1)">← Anterior</button>
+        <section class="conveyor-section">
+            <h2>🏭 Cinta de Producción</h2>
+            <div class="conveyor-belt" id="conveyorBelt">
+                <!-- Los paquetes aparecerán aquí -->
+            </div>
+            <p class="hint">Haz clic en un paquete para moverlo a la zona de apertura.</p>
+        </section>
+
+        <section class="opening-section">
+            <h2>⚙️ Zona de Apertura (<span id="slotsUsed">0</span>/10)</h2>
+            <div class="slots-grid" id="slotsGrid"></div>
+        </section>
+
+        <section class="collection-section">
+            <h2>📖 Mi Colección</h2>
+            <div class="binder-header">
+                <button onclick="changePage(-1)">←</button>
+                <span>Página <span id="currentPage">1</span>/<span id="totalPages">1</span></span>
+                <button onclick="changePage(1)">→</button>
+            </div>
+            <div class="binder-grid" id="binderGrid"></div>
+        </section>
+        
+        <div class="controls">
+            <button onclick="saveGame()" class="btn-save">💾 Guardar</button>
+            <button onclick="resetGame()" class="btn-reset">🗑️ Resetear</button>
+        </div>
     </div>
-    <div class="page-indicator">Página <span id="currentPage">1</span> / <span id="totalPages">1</span></div>
-    <div class="binder-nav">
-      <button id="nextPageBtn" onclick="changePage(1)">Siguiente →</button>
-    </div>
-  </div>
-  <div class="binder-grid" id="binderGrid"></div>
-</div>
-
-<div class="section">
-  <h2>🐺 Lobitos Activos</h2>
-  <div class="active-grid" id="activeWolves"></div>
-</div>
-
-<!-- SALA DE LO HONORABLE -->
-<button class="hall-btn" onclick="document.getElementById('hallOverlay').classList.add('active')">🕊️ Sala de lo Honorable</button>
-
-<div class="hall-overlay" id="hallOverlay">
-  <div class="hall-plaque">
-    <div class="hall-title">Sala de lo Honorable</div>
-    <div class="hall-quote">"Esta versión… no existiría sin ellos"<br>— Melissa, 18/06/2026</div>
-    
-    <ul class="hall-list">
-      <li><span>📼</span> Not So Forgotten Binder — Evolucionó hacia las tags decorativas</li>
-      <li><span>🏪</span> Tienda Multiverso — Reemplazada por el sistema de paquetes con tiempos</li>
-      <li><span>🗺️</span> Villa Lobuna — Simplificada para enfocarse en la colección de cartas</li>
-      <li><span>🎵</span> Minijuego DJ Party — Pausado para priorizar el binder paginado</li>
-      <li><span>🧬</span> Sistema de Fusión/Prestigio — Integrado en el sistema de niveles por copias</li>
-      <li><span>🎀</span> Paquete Soft & Cute — Sus lobitos viven ahora en Unforgettable Fashion</li>
-      <li><span>🎉</span> Paquete Fiesta Peluda — Sus exclusivos preservados con tag retro</li>
-    </ul>
-    
-    <button class="hall-close" onclick="document.getElementById('hallOverlay').classList.remove('active')">Cerrar con Gratitud</button>
-  </div>
-</div>
-
-<script src="game.js"></script>
+    <script src="game.js"></script>
 </body>
 </html>
