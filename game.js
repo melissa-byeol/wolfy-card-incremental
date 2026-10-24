@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
         flower: { price: 164000, duration: 150000, name: "Flower Garden", icon: "🌸" }
     };
 
-    // --- POOLS DE CARTAS (Mismos que antes) ---
+    // --- POOLS DE CARTAS ---
     const classicsPool = [
         { cardKey: "lobito", name: "🐺 Lobito", baseIncome: 2, rarity: "common", tags: [] },
         { cardKey: "cachorrito", name: "🐶 Cachorrito", baseIncome: 3, rarity: "common", tags: [] },
@@ -28,11 +28,70 @@ document.addEventListener("DOMContentLoaded", () => {
         { cardKey: "espadachin", name: "⚔️ Lobito Espadachín", baseIncome: 6, rarity: "epic", tags: [] },
         { cardKey: "resortero", name: "🪃 Lobito Resortero", baseIncome: 8, rarity: "legendary", tags: [] }
     ];
-    // (Asegúrate de tener los otros pools definidos aquí o importarlos)
-    const colorfulPool = []; 
-    const unforgettablePool = [];
-    const birthdayPool = [];
-    const flowerPool = [];
+
+    const colorfulPool = [
+        { cardKey: "bobina_velocidad", name: "⚡ Lobito Bobina Velocidad", baseIncome: 50, rarity: "rare", tags: [], bgClass: "bg-colorful-custom" },
+        { cardKey: "bobina_gravitacional", name: "🌀 Lobito Bobina Gravitacional", baseIncome: 75, rarity: "epic", tags: [], bgClass: "bg-colorful-custom" },
+        { cardKey: "bobina_regenerativa", name: "💚 Lobito Bobina Regenerativa", baseIncome: 60, rarity: "epic", tags: [], bgClass: "bg-colorful-custom" },
+        { cardKey: "lobito_blue", name: " Lobito [Blue Team]", baseIncome: 10, rarity: "rare", tags: ["Blue Team"] },
+        { cardKey: "paletero_blue", name: "🔵 Paletero [Blue Team]", baseIncome: 15, rarity: "rare", tags: ["Blue Team"] },
+        { cardKey: "espadachin_blue", name: "🔵 Espadachín [Blue Team]", baseIncome: 25, rarity: "epic", tags: ["Blue Team"] },
+        { cardKey: "resortero_blue", name: " Resortero [Blue Team]", baseIncome: 35, rarity: "epic", tags: ["Blue Team"] },
+        { cardKey: "lobito_red", name: "🔴 Lobito [Red Team]", baseIncome: 10, rarity: "rare", tags: ["Red Team"] },
+        { cardKey: "paletero_red", name: "🔴 Paletero [Red Team]", baseIncome: 15, rarity: "rare", tags: ["Red Team"] },
+        { cardKey: "espadachin_red", name: "🔴 Espadachín [Red Team]", baseIncome: 25, rarity: "epic", tags: ["Red Team"] },
+        { cardKey: "resortero_red", name: "🔴 Resortero [Red Team]", baseIncome: 35, rarity: "epic", tags: ["Red Team"] },
+        { cardKey: "cachorrito_colorless", name: "⚪ Cachorrito [Colorless]", baseIncome: 100, rarity: "legendary", tags: ["Colorless"] }
+    ];
+
+    const unforgettablePool = [
+        { cardKey: "uf_lobito", name: " Lobito", baseIncome: 3, rarity: "common", tags: ["Unforgettable Fashion"] },
+        { cardKey: "uf_boinero", name: "🎩 Lobito Boinero", baseIncome: 4, rarity: "common", tags: ["Unforgettable Fashion"] },
+        { cardKey: "uf_pantalonero", name: " Lobito Pantalonero", baseIncome: 10, rarity: "rare", tags: ["Unforgettable Fashion"] },
+        { cardKey: "uf_fresco", name: "🪮 Lobito Fresco", baseIncome: 18, rarity: "rare", tags: ["Unforgettable Fashion"] },
+        { cardKey: "uf_marinerito", name: "⚓ Lobito Marinerito", baseIncome: 14, rarity: "rare", tags: ["Unforgettable Fashion"] },
+        { cardKey: "uf_timido", name: "😳 Lobito Tímido", baseIncome: 8, rarity: "common", tags: ["Unforgettable Fashion"] },
+        { cardKey: "uf_callejero", name: "🏙️ Lobito Callejero", baseIncome: 12, rarity: "rare", tags: ["Unforgettable Fashion"] },
+        { cardKey: "uf_estiloso", name: "💅 Lobito Estiloso", baseIncome: 20, rarity: "epic", tags: ["Unforgettable Fashion"] },
+        { cardKey: "uf_curiosa", name: "🔍 Lobita Curiosa", baseIncome: 22, rarity: "common", tags: ["Unforgettable Fashion"] },
+        { cardKey: "uf_softcore", name: " Lobito SoftCore", baseIncome: 35, rarity: "rare", tags: ["Unforgettable Fashion"] },
+        { cardKey: "uf_brownie", name: "🍫 Lobito Brownie", baseIncome: 50, rarity: "rare", tags: ["Unforgettable Fashion"] },
+        { cardKey: "uf_esponjoso", name: "☁️ Lobito Esponjosito", baseIncome: 30, rarity: "epic", tags: ["Unforgettable Fashion"] },
+        { cardKey: "uf_alfa", name: " Lobito Alfa Supremo", baseIncome: 500, rarity: "legendary", tags: ["Unforgettable Fashion"] }
+    ];
+
+    const birthdayPool = [
+        { cardKey: "felix_v1", name: "🎈 Lobito [Vol.1]", baseIncome: 150, rarity: "rare", tags: ["Felix Birthday"], bgClass: "bg-felix-1" },
+        { cardKey: "felix_cach_v1", name: "🎈 Cachorrito [Vol.1]", baseIncome: 225, rarity: "epic", tags: ["Felix Birthday"], bgClass: "bg-felix-1" },
+        { cardKey: "felix_v2", name: " Lobito [Vol.2]", baseIncome: 150, rarity: "rare", tags: ["Felix Birthday"], bgClass: "bg-felix-2" },
+        { cardKey: "felix_cach_v2", name: "🎈 Cachorrito [Vol.2]", baseIncome: 225, rarity: "epic", tags: ["Felix Birthday"], bgClass: "bg-felix-2" },
+        { cardKey: "felix_v3", name: "🎈 Lobito [Vol.3]", baseIncome: 150, rarity: "rare", tags: ["Felix Birthday"], bgClass: "bg-felix-2" },
+        { cardKey: "felix_cach_v3", name: "🎈 Cachorrito [Vol.3]", baseIncome: 225, rarity: "epic", tags: ["Felix Birthday"], bgClass: "bg-felix-2" },
+        { cardKey: "felix_special", name: "🎂 Lobito Felix [20]", baseIncome: 2106, rarity: "legendary", tags: ["Felix Birthday"], bgClass: "bg-felix-1" }
+    ];
+
+    const flowerPool = [
+        { cardKey: "flower_lobito", name: "🌷 Lobito [Flower Garden]", baseIncome: 200, rarity: "common", tags: ["Flower Garden"], bgClass: "bg-flower-common" },
+        { cardKey: "flower_cachorrito", name: "🌿 Cachorrito Nenúfar", baseIncome: 250, rarity: "common", tags: ["Flower Garden"], bgClass: "bg-flower-common" },
+        { cardKey: "flower_pasto", name: " Lobito Pasto", baseIncome: 220, rarity: "common", tags: ["Flower Garden"], bgClass: "bg-flower-common" },
+        { cardKey: "flower_jardinero", name: "🌻 Lobito Jardinero", baseIncome: 400, rarity: "rare", tags: ["Flower Garden"], bgClass: "bg-flower-rare" },
+        { cardKey: "flower_girasol", name: "🌼 Cachorrito Girasol", baseIncome: 450, rarity: "rare", tags: ["Flower Garden"], bgClass: "bg-flower-rare" },
+        { cardKey: "flower_sakura_cach", name: "🌸 Cachorrito Flor de Sakura", baseIncome: 700, rarity: "epic", tags: ["Flower Garden"], bgClass: "bg-flower-epic" },
+        { cardKey: "flower_cactus", name: "🌵 Lobito Cactus", baseIncome: 750, rarity: "epic", tags: ["Flower Garden"], bgClass: "bg-flower-epic" },
+        { cardKey: "flower_margarita", name: "🌼 Lobita Margarita", baseIncome: 800, rarity: "epic", tags: ["Flower Garden"], bgClass: "bg-flower-epic" },
+        { cardKey: "flower_primaveral", name: "🌷 Lobito Primaveral", baseIncome: 1500, rarity: "legendary", tags: ["Flower Garden"], bgClass: "bg-flower-legendary" },
+        { cardKey: "flower_sakura", name: "🌸 Lobita Flor de Sakura", baseIncome: 1800, rarity: "legendary", tags: ["Flower Garden"], bgClass: "bg-flower-legendary" },
+        { cardKey: "flower_lirio", name: "🤍 Lobita Lirio Blanco", baseIncome: 2000, rarity: "legendary", tags: ["Flower Garden"], bgClass: "bg-flower-legendary" }
+    ];
+
+    // Pool de evento - Felix Day 2026 (aparece en todos los álbumes al final)
+    const felixDay2026Pool = [
+        { cardKey: "felix_day_common1", name: "🎉 Lobito Felix Day", baseIncome: 5, rarity: "common", tags: ["Felix Day 2026"] },
+        { cardKey: "felix_day_common2", name: "🎊 Cachorrito Felix Day", baseIncome: 8, rarity: "common", tags: ["Felix Day 2026"] },
+        { cardKey: "felix_day_rare1", name: "🎈 Lobito Festivo", baseIncome: 20, rarity: "rare", tags: ["Felix Day 2026"] },
+        { cardKey: "felix_day_epic1", name: "🎁 Lobito Regalo", baseIncome: 50, rarity: "epic", tags: ["Felix Day 2026"] },
+        { cardKey: "felix_day_legendary", name: "👑 Lobito Felix Day Especial", baseIncome: 100, rarity: "legendary", tags: ["Felix Day 2026"] }
+    ];
 
     function getIncomePerSecond(card) {
         return Math.floor(card.baseIncome * (card.level + 1) / 2);
@@ -56,10 +115,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const r = Math.random() * 100;
         let targetRarity = "common";
         
-        // Lógica simplificada de rareza para el ejemplo
-        if (r < 5) targetRarity = "legendary";
-        else if (r < 20) targetRarity = "epic";
-        else if (r < 50) targetRarity = "rare";
+        // Probabilidades ajustadas según rareza
+        if (r < 3) targetRarity = "legendary";
+        else if (r < 12) targetRarity = "epic";
+        else if (r < 35) targetRarity = "rare";
 
         const filtered = pool.filter(c => c.rarity === targetRarity);
         const usePool = filtered.length > 0 ? filtered : pool;
@@ -140,10 +199,30 @@ document.addEventListener("DOMContentLoaded", () => {
         else if (pack.type === "colorful") pool = colorfulPool;
         else if (pack.type === "unforgettable") pool = unforgettablePool;
         else if (pack.type === "birthday") pool = birthdayPool;
-        else pool = flowerPool;
+        else if (pack.type === "flower") pool = flowerPool;
+        else pool = classicsPool;
 
+        // Obtener carta del paquete
         const card = rollCardFromPool(pool, pack.type);
         
+        // También hay chance de obtener una carta de Felix Day 2026 (evento)
+        const eventRoll = Math.random();
+        if (eventRoll < 0.15) { // 15% de chance de obtener carta de evento
+            const eventCard = rollCardFromPool(felixDay2026Pool, "felix_day");
+            
+            // Agregar la carta de evento también
+            if (!collection[eventCard.cardKey]) {
+                collection[eventCard.cardKey] = {
+                    name: eventCard.name, baseIncome: eventCard.baseIncome, level: 1, copies: 0,
+                    pendingMoney: 0, lastCollect: Date.now(), rarity: eventCard.rarity,
+                    tags: eventCard.tags || [], bgClass: eventCard.bgClass || ''
+                };
+            }
+            collection[eventCard.cardKey].copies++;
+            checkLevelUp(collection[eventCard.cardKey]);
+        }
+        
+        // Agregar la carta principal del paquete
         if (!collection[card.cardKey]) {
             collection[card.cardKey] = {
                 name: card.name, baseIncome: card.baseIncome, level: 1, copies: 0,
@@ -179,10 +258,79 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     window.changePage = function(delta) {
-        const totalPages = Math.max(1, Math.ceil(Object.keys(collection).length / CARDS_PER_PAGE));
+        const totalPages = getTotalPages();
         currentPage = Math.max(1, Math.min(totalPages, currentPage + delta));
         renderBinder();
     };
+
+    // Función para calcular el total de páginas basado en el orden del binder
+    function getTotalPages() {
+        const orderedCards = getOrderedCollection();
+        return Math.max(1, Math.ceil(orderedCards.length / CARDS_PER_PAGE));
+    }
+
+    // Función para obtener las cartas ordenadas según el orden del binder
+    function getOrderedCollection() {
+        const cards = Object.entries(collection).map(([key, card]) => ({
+            key,
+            ...card
+        }));
+
+        // Definir el orden de los paquetes
+        const packOrder = [
+            'classics',
+            'colorful', 
+            'unforgettable',
+            'flower'
+        ];
+
+        // Orden de rarezas (de común a legendario)
+        const rarityOrder = ['common', 'rare', 'epic', 'legendary'];
+
+        // Función para determinar a qué paquete pertenece una carta
+        function getPackForCard(card) {
+            if (card.tags.includes('Felix Day 2026')) return 'felix_day';
+            if (card.tags.includes('Unforgettable Fashion')) return 'unforgettable';
+            if (card.tags.includes('Flower Garden')) return 'flower';
+            if (card.tags.includes('Felix Birthday')) return 'birthday';
+            if (card.tags.includes('Blue Team') || card.tags.includes('Red Team') || card.tags.includes('Colorless')) return 'colorful';
+            return 'classics';
+        }
+
+        // Ordenar las cartas
+        cards.sort((a, b) => {
+            const packA = getPackForCard(a);
+            const packB = getPackForCard(b);
+
+            // Las cartas de Felix Day 2026 van al final
+            if (packA === 'felix_day' && packB !== 'felix_day') return 1;
+            if (packA !== 'felix_day' && packB === 'felix_day') return -1;
+
+            // Si ambas son Felix Day, ordenar por rareza
+            if (packA === 'felix_day' && packB === 'felix_day') {
+                const rarityDiff = rarityOrder.indexOf(a.rarity) - rarityOrder.indexOf(b.rarity);
+                if (rarityDiff !== 0) return rarityDiff;
+                return a.baseIncome - b.baseIncome;
+            }
+
+            // Para las demás, ordenar por paquete primero
+            const packIndexA = packOrder.indexOf(packA);
+            const packIndexB = packOrder.indexOf(packB);
+            
+            if (packIndexA !== packIndexB) {
+                return packIndexA - packIndexB;
+            }
+
+            // Dentro del mismo paquete, ordenar por rareza
+            const rarityDiff = rarityOrder.indexOf(a.rarity) - rarityOrder.indexOf(b.rarity);
+            if (rarityDiff !== 0) return rarityDiff;
+
+            // Si tienen la misma rareza, ordenar por income
+            return a.baseIncome - b.baseIncome;
+        });
+
+        return cards;
+    }
 
     // --- RENDERIZADO ---
 
@@ -246,18 +394,20 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderBinder() {
         const grid = document.getElementById("binderGrid");
         grid.innerHTML = "";
-        const keys = Object.keys(collection);
-        const totalPages = Math.max(1, Math.ceil(keys.length / CARDS_PER_PAGE));
+        
+        const orderedCards = getOrderedCollection();
+        const totalPages = Math.max(1, Math.ceil(orderedCards.length / CARDS_PER_PAGE));
+        
         if (currentPage > totalPages) currentPage = totalPages;
         
         document.getElementById("currentPage").innerText = currentPage;
         document.getElementById("totalPages").innerText = totalPages;
 
         const startIdx = (currentPage - 1) * CARDS_PER_PAGE;
-        const pageKeys = keys.slice(startIdx, startIdx + CARDS_PER_PAGE);
+        const pageCards = orderedCards.slice(startIdx, startIdx + CARDS_PER_PAGE);
 
-        pageKeys.forEach(cardKey => {
-            const card = collection[cardKey];
+        pageCards.forEach(cardData => {
+            const card = collection[cardData.key];
             updatePendingMoney(card);
             const div = document.createElement("div");
             div.className = `binder-card rarity-${card.rarity}`;
@@ -271,7 +421,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="card-income">💰 $${income}/s</div>
                 ${pending > 0 ? `<div class="card-pending" style="color:#00ff88">+$${pending}</div>` : ''}
             `;
-            div.onclick = () => collectCardIncome(cardKey);
+            div.onclick = () => collectCardIncome(cardData.key);
             grid.appendChild(div);
         });
     }
