@@ -285,6 +285,30 @@ document.addEventListener("DOMContentLoaded", () => {
         return Math.max(1, Math.ceil(orderedCards.length / CARDS_PER_PAGE));
     }
 
+       // Función para determinar a qué paquete pertenece una carta
+    function getPackForCard(card) {
+        if (card.tags.includes('Felix Day 2026')) return 'felix_day';
+        if (card.tags.includes('Unforgettable Fashion')) return 'unforgettable';
+        if (card.tags.includes('Flower Garden')) return 'flower';
+        if (card.tags.includes('Felix Birthday')) return 'birthday';
+        if (card.tags.includes('Blue Team') || card.tags.includes('Red Team') || card.tags.includes('Colorless')) return 'colorful';
+        return 'classics';
+    }
+
+    // Función para obtener el pool correcto de una carta
+    function getPoolForCard(card) {
+        const pack = getPackForCard(card);
+        switch(pack) {
+            case 'classics': return classicsPool;
+            case 'colorful': return colorfulPool;
+            case 'unforgettable': return unforgettablePool;
+            case 'birthday': return birthdayPool;
+            case 'flower': return flowerPool;
+            case 'felix_day': return felixDay2026Pool;
+            default: return classicsPool;
+        }
+    }
+
     // Función para obtener las cartas ordenadas según el orden del binder
     function getOrderedCollection() {
         const cards = Object.entries(collection).map(([key, card]) => ({
@@ -302,30 +326,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Orden de rarezas (de común a legendario)
         const rarityOrder = ['common', 'rare', 'epic', 'legendary'];
-
-        // Función para determinar a qué paquete pertenece una carta
-        function getPackForCard(card) {
-            if (card.tags.includes('Felix Day 2026')) return 'felix_day';
-            if (card.tags.includes('Unforgettable Fashion')) return 'unforgettable';
-            if (card.tags.includes('Flower Garden')) return 'flower';
-            if (card.tags.includes('Felix Birthday')) return 'birthday';
-            if (card.tags.includes('Blue Team') || card.tags.includes('Red Team') || card.tags.includes('Colorless')) return 'colorful';
-            return 'classics';
-        }
-
-        // Función para obtener el pool correcto de una carta
-        function getPoolForCard(card) {
-            const pack = getPackForCard(card);
-            switch(pack) {
-                case 'classics': return classicsPool;
-                case 'colorful': return colorfulPool;
-                case 'unforgettable': return unforgettablePool;
-                case 'birthday': return birthdayPool;
-                case 'flower': return flowerPool;
-                case 'felix_day': return felixDay2026Pool;
-                default: return classicsPool;
-            }
-        }
 
         // Ordenar las cartas
         cards.sort((a, b) => {
@@ -361,8 +361,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         return cards;
     }
-
-    
     
     // --- RENDERIZADO ---
 
